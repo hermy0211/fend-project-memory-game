@@ -72,26 +72,40 @@
 
   // Turn over cards when clicked
   function cardDisplay() {
-    this.className = "card show open";
+    // Check if it is an already matched card
+    if (this.classList.contains('match')){
+      return;
+    }
+    // If not, turn the card over
+    else {
+      this.className = "card show open";
+    }
   }
 
   // Add cards to list of open cards
   function cardList() {
-    listOfOpenCards.push(this);
-    // Check if the same card was clicked twice
-    if (listOfOpenCards[0] !== listOfOpenCards[1]){
-      if (listOfOpenCards.length < 2){
-        moveCounter();
-        return;
-      }
-      else if (listOfOpenCards.length == 2){
-        moveCounter();
-        cardMatch();
-      }
+    // Check if it is an already matched card
+    if (this.classList.contains('match')){
+      return;
     }
-    // If the same card was clicked twice, take it out from the array
-    else{
-      listOfOpenCards.pop();
+    // If not, add to the list of open cards
+    else {
+      listOfOpenCards.push(this);
+      // Check if the same card was clicked twice
+      if (listOfOpenCards[0] !== listOfOpenCards[1]){
+        if (listOfOpenCards.length < 2){
+          moveCounter();
+          return;
+        }
+        else if (listOfOpenCards.length == 2){
+          moveCounter();
+          cardMatch();
+        }
+      }
+      // If the same card was clicked twice, take it out from the array
+      else{
+        listOfOpenCards.pop();
+      }
     }
   }
 

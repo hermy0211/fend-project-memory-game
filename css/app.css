@@ -22,7 +22,6 @@ body {
 }
 
 .container {
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -38,10 +37,7 @@ h1 {
  */
 
 .deck {
-  width: 660px;
-  min-height: 680px;
   background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-  padding: 32px;
   border-radius: 10px;
   box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
   display: flex;
@@ -52,8 +48,6 @@ h1 {
 }
 
 .deck .card {
-  height: 125px;
-  width: 125px;
   background: #367a84;
   font-size: 0;
   color: #ffffff;
@@ -72,13 +66,18 @@ h1 {
 }
 
 .deck .card.show {
+  list-style: none;
   font-size: 33px;
+  text-align: center;
 }
 
 .deck .card.match {
   cursor: default;
   background: #02ccba;
+  list-style: none;
   font-size: 33px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 /*
@@ -87,13 +86,12 @@ h1 {
 
 .score-panel {
   text-align: left;
-  width: 600px;
   margin-bottom: 10px;
 }
 
 /* Move Counter */
 .move-container {
-  width: 33%;
+  width: 32%;
   margin: 0 0 0 0;
   padding: 0 0 0 0;
   display: inline-flex;
@@ -123,7 +121,7 @@ h1 {
 /* Timer */
 
 .timer-container {
-  width: 33%;
+  width: 32%;
   margin: 0 0 0 0;
   padding: 0 0 0 0;
   display: inline-flex;
@@ -144,7 +142,7 @@ h1 {
 /* Restart */
 
 .restart-container {
-  width: 32.5%;
+  width: 32%;
   margin: 0 0 0 0;
   padding: 0 0 0 0;
   display: inline-flex;
@@ -185,7 +183,9 @@ h1 {
  	padding: 20px;
  	background: #ffffff;
  	border-radius: 5px;
- 	width: 60%;
+  width: 80%;
+  max-height: 300px;
+  max-width: 500px;
  	position: relative;
 }
 
@@ -200,7 +200,6 @@ h1 {
 }
 
 .popup .content {
- 	max-height: 30%;
  	overflow: auto;
  	text-align: center;
 }
@@ -230,6 +229,7 @@ h1 {
  	background-color: #02ccba;
  	padding: 0.7rem 1rem;
  	font-size: 1.1rem;
+  align-items: center;
  	margin: 20px 25% 10px 25%;
  	width: 50%;
  	color: #ffffff;
