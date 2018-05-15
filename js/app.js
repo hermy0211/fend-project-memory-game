@@ -8,6 +8,7 @@
   let countMoves;
   const moves = document.querySelector('.moves');
   let stars = document.querySelector('.stars');
+  let timer = false;
   let seconds = document.querySelector('.seconds');
   let minutes = document.querySelector('.minutes');
   let interval;
@@ -27,8 +28,7 @@
     arrayOfCards = shuffle(arrayOfCards);
     createNewDeck(arrayOfCards);
     endTimer();
-    startTimer();
-    controlTimer();
+    setTimer();
     listOfMatchedCards = [];
   }
 
@@ -61,26 +61,14 @@
       newCard.innerHTML = card.innerHTML;
       cardDeck.appendChild(newCard);
 
-      //Add event listeners
-      newCard.addEventListener('click', cardDisplay);
+      // Add event listeners
       newCard.addEventListener('click', cardList);
+      newCard.addEventListener('click', beginTimer);
     }
   }
 
 
 // 3. Display cards when clicked and check if they match
-
-  // Turn over cards when clicked
-  function cardDisplay() {
-    // Check if it is an already matched card
-    if (this.classList.contains('match')){
-      return;
-    }
-    // If not, turn the card over
-    else {
-      this.className = "card show open";
-    }
-  }
 
   // Add cards to list of open cards
   function cardList() {
@@ -90,6 +78,7 @@
     }
     // If not, add to the list of open cards
     else {
+      this.className = "card show open";
       listOfOpenCards.push(this);
       // Check if the same card was clicked twice
       if (listOfOpenCards[0] !== listOfOpenCards[1]){
@@ -119,9 +108,8 @@
         listOfOpenCards = [];
         listOfMatchedCards.push("Match");
         listOfMatchedCards.push("Match");
-        console.log(listOfMatchedCards);
         endGame();
-      }, 500);
+      }, 200);
     }
     // If the two cards do not match, return them into their original state
     else{
@@ -129,7 +117,7 @@
         listOfOpenCards[0].className = "card";
         listOfOpenCards[1].className = "card";
         listOfOpenCards = [];
-      }, 500);
+      }, 200);
     }
   }
 
@@ -176,7 +164,7 @@
 // 5. Function to control timer
 
   // Set the timer to 00:00
-  function startTimer(){
+  function setTimer(){
     seconds.textContent = "00";
     minutes.textContent = "00";
   }
@@ -207,12 +195,20 @@
     clearInterval(interval);
   }
 
+  // Function to start timer when the player clicks a card
+  function beginTimer() {
+    if (timer === false){
+      controlTimer();
+      timer = true;
+    }
+  }
+
 
 // 6. Display message with the final score when all cards have been matched
 
   // Function to end game and display pop up
   function endGame() {
-    if(listOfMatchedCards.length == 16){
+    if (listOfMatchedCards.length == 16) {
       endTimer();
 
       // Show pop up
