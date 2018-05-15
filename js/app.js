@@ -143,13 +143,13 @@
 
   // Decrease stars based on the number of moves
   function moveStars() {
-    if (parseInt(moves.textContent)<=30){
+    if (parseInt(moves.textContent)<=38){
       stars.innerHTML =
       `<li><i class="fa fa-star"></i></li>
       <li><i class="fa fa-star"></i></li>
       <li><i class="fa fa-star"></i></li>`;
     }
-    else if (parseInt(moves.textContent)>30 && parseInt(moves.textContent)<=46){
+    else if (parseInt(moves.textContent)>38 && parseInt(moves.textContent)<=50){
       stars.innerHTML =
       `<li><i class="fa fa-star"></i></li>
       <li><i class="fa fa-star"></i></li>`;
